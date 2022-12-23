@@ -9,7 +9,6 @@ import UIKit
 
 class DetailShortHeaderView: UIView {
     
-    var backButton = UIButton()
     var cityLabel = UILabel()
     var temperatureLabel = UILabel()
     var weatherDescriptionLabel = UILabel()
@@ -36,58 +35,39 @@ class DetailShortHeaderView: UIView {
     }
     
     func buildHierarchy() {
-        setupViews(backButton)
         setupViews(cityLabel)
     }
     
     func configureSubviews() {
         backgroundColor = Resources.Colors.blueBackground
-
-        backButton.setImage(Resources.Images.leftArrow, for: .normal)
-        backButton.tintColor = Resources.Colors.whiteText
         
         descriptionWeatherStackView = UIStackView(arrangedSubviews: [temperatureLabel, separateView, weatherDescriptionLabel])
         descriptionWeatherStackView.axis = .horizontal
-//        descriptionWeatherStackView.alignment = .firstBaseline
         descriptionWeatherStackView.distribution = .equalSpacing
         descriptionWeatherStackView.spacing = 10
 
         setupViews(descriptionWeatherStackView)
 
-        
-        cityLabel.text = "New York"
         cityLabel.font = Resources.Fonts.SFProDisplayRegular(with: 34)
         cityLabel.textColor = Resources.Colors.whiteText
         
-        temperatureLabel.text = "7˚"
         temperatureLabel.textColor = Resources.Colors.whiteText
         temperatureLabel.font = Resources.Fonts.SFProDisplayMedium(with: 20)
 
         separateView.backgroundColor = Resources.Colors.whiteBackground
         
-        weatherDescriptionLabel.text = "Cloudy Windy"
         weatherDescriptionLabel.font = Resources.Fonts.SFProDisplayMedium(with: 20)
         weatherDescriptionLabel.textColor = Resources.Colors.whiteText
-        
-//        addBackButtonAction(#selector(tap), with: self)
+        weatherDescriptionLabel.adjustsFontSizeToFitWidth = true
         
     }
-    
-//    @objc func tap() {
-//        print("press")
-//    }
     
     func layoutConstraint() {
         NSLayoutConstraint.activate([
             bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 70),
-            
-            backButton.heightAnchor.constraint(equalToConstant: 24),
-            backButton.widthAnchor.constraint(equalToConstant: 24),
-            backButton.topAnchor.constraint(equalTo: topAnchor, constant: 53),
-            backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            
+  
             cityLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            cityLabel.centerYAnchor.constraint(equalTo: backButton.centerYAnchor, constant: 3),
+            cityLabel.topAnchor.constraint(equalTo: topAnchor),
 
             separateView.widthAnchor.constraint(equalToConstant: 1),
             separateView.heightAnchor.constraint(equalToConstant: 24),
@@ -99,12 +79,11 @@ class DetailShortHeaderView: UIView {
         ])
     }
     
-    
-    
-    func addBackButtonAction(_ action: Selector, with target: Any?) {
-        backButton.addTarget(target, action: (action), for: .touchUpInside)
+    func setupcell(model: WeatherModel, cityName: String) {
+        cityLabel.text = cityName
+        temperatureLabel.text = "\(Int(model.current.temp))˚"
+        weatherDescriptionLabel.text = model.current.weather[0].descriptionWeather
+        
     }
-    
-    
     
 }

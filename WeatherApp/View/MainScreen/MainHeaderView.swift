@@ -12,6 +12,8 @@ class MainHeaderView: UIView {
     var header = UILabel()
     var searchView = UIView()
     var searchBar = UISearchBar()
+    var timer: Timer?
+    var filteredData = [cityArray]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,6 +51,7 @@ class MainHeaderView: UIView {
         searchBar.placeholder = Resources.String.searchPlaceholder
         searchBar.searchTextField.overrideUserInterfaceStyle = .dark
         searchBar.searchTextField.textColor = Resources.Colors.whiteText
+//        searchBar.delegate = self
 //        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [NSAttributedString.Key.foregroundColor: Resources.Colors.whiteText])
         
         
@@ -75,6 +78,5 @@ class MainHeaderView: UIView {
         ])
     }
 
-    
-    
 }
+

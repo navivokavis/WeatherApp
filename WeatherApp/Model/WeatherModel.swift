@@ -7,33 +7,50 @@
 
 import Foundation
 
+
+// MARK: - DescriptionHeaderArray
+
+let descriptionWeatherLabelTextArray: [String] = ["SUNRISE", "SUNSET", "CHANCE OF RAIN", "HUMIDITY", "WIND", "FEELS LIKE", "PRECIPITATION", "PRESSURE", "VISIBILITY", "UV INDEX"]
+
+
 // MARK: - CityArray
 
-let cityArray: [String] = ["Warsaw","Bucharest","Martuni","Shah Alam","Karmie","Budapest","Munich","Netivot","Santa Cruz de la Sierra","Porto Alegre","Kfar Yona","Palermo","Bremen","Jermuk","Beit Shemesh","Florence","Utrecht","Buenos Aires","Guayaquil","Rosario","Soledad","Subang Jaya","Valencia","Pasir Gudang","Akhtala"]
+let cityArray: [String] = ["Warsaw", "Bucharest", "Martuni","Shah Alam","Budapest","Munich","Netivot","Santa Cruz de la Sierra","Porto Alegre","Kfar Yona","Palermo","Bremen","Jermuk","Beit Shemesh","Florence","Utrecht","Buenos Aires","Guayaquil","Rosario","Soledad","Subang Jaya", "Valencia","Pasir Gudang", "Akhtala"]
+
+var cityModelArray = [CityModel]()
+
+// MARK: - CityModel
+
+struct CityModel: Codable {
+    let name: String
+    let lat: Double
+    let lon: Double
+    
+}
 
 // MARK: - WeatherModel
 
 struct WeatherModel: Codable {
-    let timezone: String
-    let current: Current
-    let hourly: [Hourly]
-    let daily: [Daily]
+    var timezone: String
+    var current: Current
+    var hourly: [Hourly]
+    var daily: [Daily]
 }
 
 struct Current: Codable {
-    let dt: Int
-    let sunrise: Int
-    let sunset: Int
-    let temp: Double
-    let feelsLike: Double
-    let pressure: Int
-    let humidity: Int
-    let dewPint: Double
-    let uvi: Double
-    let clouds: Double
-    let visibility: Double
-    let windSpeed: Double
-    let weather: [Weather]
+    var dt: Int
+    var sunrise: Int
+    var sunset: Int
+    var temp: Double
+    var feelsLike: Double
+    var pressure: Int
+    var humidity: Int
+    var dewPint: Double
+    var uvi: Double
+    var clouds: Double
+    var visibility: Double
+    var windSpeed: Double
+    var weather: [Weather]
     
     enum CodingKeys: String, CodingKey {
         case dt
@@ -54,9 +71,9 @@ struct Current: Codable {
 }
 
 struct Weather: Codable {
-    let id: Int
-    let descriptionWeather: String
-    let icon: String
+    var id: Int
+    var descriptionWeather: String
+    var icon: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -66,37 +83,28 @@ struct Weather: Codable {
 }
 
 struct Hourly: Codable {
-    let dt: Int
-    let temp: Double
-    let humidity: Int
-    let weather: [Weather]
-    let pop: Double
+    var dt: Int
+    var temp: Double
+    var humidity: Int
+    var weather: [Weather]
+    var pop: Double
     
 }
 
 struct Daily: Codable {
     
-    let dt: Int
-    let temp: Temp
-    let humidity: Int
-    let weather: [Weather]
-    let pop: Double
+    var dt: Int
+    var temp: Temp
+    var humidity: Int
+    var weather: [Weather]
+    var pop: Double
     
 }
 
 struct Temp: Codable {
-    let min: Double
-    let max: Double
-    let night: Double
+//    let day: Double
+    var min: Double
+    var max: Double
+    var night: Double
 }
 
-// MARK: - DescriptionHeaderArray
-
-let descriptionArray = ["SUNRISE",
-                        "SUNSET",
-                        "HUMIDITY",
-                        "WIND",
-                        "FEELS LIKE",
-                        "RESSURE",
-                        "VISIBILITY",
-                        "UV INDEX"]

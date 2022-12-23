@@ -22,12 +22,16 @@ extension UINavigationController {
     }
  
     func setupNavigationController() {
-        self.navigationBar.backgroundColor = Resources.Colors.blackBackground
+//        self.navigationBar.backgroundColor = Resources.Colors.blackBackground
+//        self.navigationController?.navigationBar
         self.navigationBar.barStyle = UIBarStyle.black
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.tintColor = .white
 //        self.navigationBar.standardAppearance.titleTextAttributes = [
-//            .foregroundColor: Resources.Colors.titleGray,
-//            .font: Resources.Fonts.helveticaRegular(with: 17)
+//            .foregroundColor: Resources.Colors.whiteText,
+//            .font: Resources.Fonts.SFProDisplayBold(with: 34),
 //        ]
+        
 //        self.setStatusBar(backgroundColor: Resources.Colors.blackBackground)
 //        self.navigationBar.addBottomBorder(wiht: Resources.Colors.separator, height: 1)
     }
